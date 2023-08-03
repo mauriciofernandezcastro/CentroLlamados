@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @client %>
+
+<div id="calls">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Usuario</th>
+          <th>Cliente</th>
+          <th>Motivo de la llamada</th>
+        <tr>
+      </thead>
+    <% @client.calls.each do |call| %>
+    <tbody>
+      <tr>
+        <td><%= call.id %></td>
+        <td><%= call.user.email %></td>
+        <td><%= call.client.name %></td>
+        <td><%= call.reason.name %></td>
+      <tr>
+    </tbody>
+  <% end %>
+  </table>
+</div>
+
+
+<div>
+  <%= link_to "Edit this client", edit_client_path(@client) %> |
+  <%= link_to "Back to clients", clients_path %>
+
+  <%= button_to "Destroy this client", @client, method: :delete %>
+</div>

@@ -1,0 +1,41 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Calls</h1>
+
+<% form_with method: :get do |form| %>
+  <div>
+  <%= form.label :cadena, style: "display: block" %>
+  <%= form.text_field :cadena %>
+  <%= form.submit "Buscar..." %>
+  </div>
+<% end %>
+
+
+<div id="calls">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Usuario</th>
+          <th>Cliente</th>
+          <th>Motivo de la llamada</th>
+          <th>Acción</th>
+        <tr>
+      </thead>
+    <% @calls.each do |call| %>
+    <tbody>
+      <tr>
+        <td><%= call.id %></td>
+        <td><%= call.user.email %></td>
+        <td><%= call.client.name %></td>
+        <td><%= call.reason.name %></td>
+        <td><%= link_to "Show this call", call %></td>
+      <tr>
+    </tbody>
+  <% end %>
+  </table>
+</div>
+
+
+
+<%= link_to "New call", new_call_path %>

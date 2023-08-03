@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @client %>
-
+<% if @client.calls.count > 0 %>
 <div id="calls">
   <table class="table table-striped">
       <thead>
@@ -24,6 +24,10 @@
   <% end %>
   </table>
 </div>
+
+<% else %>
+      <h2>Aún no registra llamadas</h2>
+<% end %>
 
 
 <div>

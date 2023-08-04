@@ -2,6 +2,15 @@
 
 <h1>Calls</h1>
 
+<%= form_with method: :get do |form| %>
+  <div>
+    <%= form.label :cadena, style: "display: block" %>
+    <%= form.text_field :cadena %>
+    <%= form.submit "Buscar..." %>
+  </div>
+<% end %>
+
+
 <% form_with method: :get do |form| %>
   <div>
   <%= form.label :cadena, style: "display: block" %>
@@ -10,6 +19,7 @@
   </div>
 <% end %>
 
+<% if @calls.count > 0 %>
 
 <div id="calls">
   <table class="table table-striped">
@@ -35,7 +45,13 @@
   <% end %>
   </table>
 </div>
+<div class="text-center">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>
 
+<% else %>
+  <h2>No hay llamadas para esta consulta</h2>
+<% end %>
 
 
 <%= link_to "New call", new_call_path %>

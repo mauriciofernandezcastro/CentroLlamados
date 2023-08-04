@@ -3,7 +3,12 @@ class CallsController < ApplicationController
 
   # GET /calls or /calls.json
   def index
-    @calls = Call.all
+    ccc = params[:cadena]
+    if ccc.present?
+      @pagy, @calls = pagy(Call.por_cliente_o_razon(ccc))
+    else
+      @pagy, @calls = pagy(Call.all)
+    end
   end
 
   # GET /calls/1 or /calls/1.json
@@ -68,4 +73,4 @@ class CallsController < ApplicationController
     def call_params
       params.require(:call).permit(:client_id, :reason_id)
     end
-end
+  end
